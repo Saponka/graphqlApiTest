@@ -1,9 +1,10 @@
 //creamos funciones
 //resolvers nos dicen que vamos a hacer cuando se consulte algo
 //let root ={}
- const resolvers = {
+const {getChampion,getAllChampions}= require('../src/DB/controllers/index')
+
+ const root = {
     
-  
     hello: () => {
         return 'Hello world Mother Fucker!';
       },
@@ -13,11 +14,14 @@
       console.log(root.name);
     
        return `Hola ${root.name}`
-     }
-
+     },
+      
+     champion: getChampion,
+     allChampion: getAllChampions,
     
 
  };
+
 module.exports = {
-    resolvers
+    root
 }
