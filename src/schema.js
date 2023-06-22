@@ -1,32 +1,52 @@
-//importamos desde graphql-tools la herramienta makeExecutableSchema
-//crea un  new schema y une nuestros resolvers y los typeDefs
+//require un buildSchema de graphql
 const { buildSchema } = require('graphql');
-//import { makeExecutableSchema } from 'graphql-tools';
-//import resolvers de resolvers.js
-const resolvers = require('./resolvers');
+//require resolvers de resolvers.js
+//const resolvers = require('./resolvers');
 
-// Definir el esquema GraphQL
+// Definir el squema de GraphQL 
+//schema: es una instancia del GraphQLSchema de GraphQL. 
+//Aquí es donde estructuramos la información que vamos a solicitar.
+
 const schema = buildSchema(`
  
  type Query {
 
     hello: String
     greet(name:String!): String
-  }
+
+    champion(name: String!): Champion
+		allChampion(name: [String!]):[Champion]
    
+  }
+  
+  type Champion {
+		id: ID!
+		name: String!
+		rarity: String
+		faction: String
+		rating: Int!
+		type: String
+		element: String
+    health: Int!
+		attack: Int!
+		defense: Int!
+		criticalRate: Int!
+		criticalDamage: Int!
+		speed: Int!
+		resistance: Int!
+		accuracy: Int!
+	}
+	
+	
+	
   
 `);
 // (name:String!): String    
-// ! si no hay name tirame un error
+// String! si no hay name tirame un error
 
 
-/* let root = {
-    hello: () => {
-      return 'Hello world!';
-    },
-  }; */
 module.exports = {
     schema,
-    resolvers
+    /* resolvers */
     /* root ,*/
 }
